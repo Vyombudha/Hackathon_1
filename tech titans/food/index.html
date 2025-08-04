@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Donation Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>FoodShare</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Share Food, Share Love</h1>
+            <p>Connect with restaurants and help feed those in need</p>
+            <div class="hero-buttons">
+                <button class="donate-btn">Donate Now</button>
+                <button class="learn-btn">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="donate" class="donation-section">
+        <h2>Make a Difference Today</h2>
+        <div class="donation-options">
+            <div class="donation-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Donate Food</h3>
+                <p>Provide meals for those in need through our restaurant partners</p>
+                <button class="donate-food-btn">Donate Food</button>
+            </div>
+            <div class="donation-card">
+                <i class="fas fa-hand-holding-usd"></i>
+                <h3>Donate Money</h3>
+                <p>Your financial contribution helps us deliver more meals</p>
+                <button class="donate-money-btn">Donate Money</button>
+            </div>
+            <div class="donation-card">
+                <i class="fas fa-store"></i>
+                <h3>Restaurant Partner</h3>
+                <p>Join our network of restaurants helping to feed the community</p>
+                <button class="partner-btn">Become a Partner</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <i class="fas fa-donate"></i>
+                <h3>Make a Donation</h3>
+                <p>Choose to donate food for a specific number of people or make a monetary contribution</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <i class="fas fa-utensils"></i>
+                <h3>We Contact Restaurants</h3>
+                <p>Our system automatically finds the nearest restaurant partners</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <i class="fas fa-truck"></i>
+                <h3>Food is Prepared & Delivered</h3>
+                <p>Restaurants prepare fresh meals that are delivered to those in need</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <i class="fas fa-heart"></i>
+                <h3>Impact is Made</h3>
+                <p>You receive updates about how your donation has helped the community</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="restaurant-partners" class="partners">
+        <h2>Restaurant Partners</h2>
+        <p>Join our growing network of restaurants committed to reducing food waste and helping those in need</p>
+        <div class="partner-benefits">
+            <div class="benefit">
+                <i class="fas fa-recycle"></i>
+                <h3>Reduce Food Waste</h3>
+                <p>Donate excess food that would otherwise go to waste</p>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-certificate"></i>
+                <h3>Community Recognition</h3>
+                <p>Be recognized as a socially responsible business</p>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-users"></i>
+                <h3>Expand Your Reach</h3>
+                <p>Connect with new customers who value social responsibility</p>
+            </div>
+        </div>
+        <button class="partner-signup-btn">Sign Up as a Restaurant Partner</button>
+    </section>
+
+    <section id="donation-form" class="donation-form-section hidden">
+        <div class="form-container">
+            <h2>Donate Food</h2>
+            <form id="food-donation-form">
+                <div class="form-group">
+                    <label for="meal-count">Number of Meals</label>
+                    <input type="number" id="meal-count" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="location">Your Location</label>
+                    <input type="text" id="location" placeholder="Enter your city or zip code">
+                </div>
+                <div class="form-group">
+                    <label for="donation-type">Donation Type</label>
+                    <select id="donation-type">
+                        <option value="one-time">One-time Donation</option>
+                        <option value="monthly">Monthly Donation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="special-instructions">Special Instructions (Optional)</label>
+                    <textarea id="special-instructions" placeholder="Any specific requirements or notes"></textarea>
+                </div>
+                <button type="submit" class="submit-donation">Proceed to Payment</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="money-donation-form" class="donation-form-section hidden">
+        <div class="form-container">
+            <h2>Donate Money</h2>
+            <form id="money-donation-form">
+                <div class="form-group">
+                    <label for="donation-amount">Donation Amount</label>
+                    <div class="amount-options">
+                        <button type="button" class="amount-option" data-amount="10">$10</button>
+                        <button type="button" class="amount-option" data-amount="25">$25</button>
+                        <button type="button" class="amount-option" data-amount="50">$50</button>
+                        <button type="button" class="amount-option" data-amount="100">$100</button>
+                        <input type="number" id="custom-amount" placeholder="Custom amount">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="donor-name">Your Name</label>
+                    <input type="text" id="donor-name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="donor-email">Email Address</label>
+                    <input type="email" id="donor-email" placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label for="donation-frequency">Donation Frequency</label>
+                    <select id="donation-frequency">
+                        <option value="one-time">One-time Donation</option>
+                        <option value="monthly">Monthly Donation</option>
+                        <option value="quarterly">Quarterly Donation</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-donation">Proceed to Payment</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="restaurant-form" class="donation-form-section hidden">
+        <div class="form-container">
+            <h2>Restaurant Partnership</h2>
+            <form id="restaurant-partnership-form">
+                <div class="form-group">
+                    <label for="restaurant-name">Restaurant Name</label>
+                    <input type="text" id="restaurant-name" placeholder="Enter restaurant name">
+                </div>
+                <div class="form-group">
+                    <label for="restaurant-address">Restaurant Address</label>
+                    <input type="text" id="restaurant-address" placeholder="Enter full address">
+                </div>
+                <div class="form-group">
+                    <label for="contact-person">Contact Person</label>
+                    <input type="text" id="contact-person" placeholder="Enter name of contact person">
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Contact Email</label>
+                    <input type="email" id="contact-email" placeholder="Enter email address">
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">Contact Phone</label>
+                    <input type="tel" id="contact-phone" placeholder="Enter phone number">
+                </div>
+                <div class="form-group">
+                    <label for="food-capacity">Estimated Daily Meal Capacity</label>
+                    <input type="number" id="food-capacity" min="1" placeholder="Number of meals you can provide daily">
+                </div>
+                <div class="form-group">
+                    <label for="partnership-type">Partnership Type</label>
+                    <select id="partnership-type">
+                        <option value="excess-food">Donate Excess Food</option>
+                        <option value="prepare-meals">Prepare Meals on Demand</option>
+                        <option value="both">Both Options</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-partnership">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>About FoodShare</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://via.placeholder.com/500x300" alt="People sharing food">
+            </div>
+            <div class="about-text">
+                <p>FoodShare is a platform dedicated to connecting generous donors with people in need through our network of restaurant partners. Our mission is to reduce food waste and hunger simultaneously by creating an efficient system for food donation and distribution.</p>
+                <p>Founded in 2023, we've already helped provide thousands of meals to people experiencing food insecurity while helping restaurants reduce waste and give back to their communities.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <h3>10,000+</h3>
+                        <p>Meals Donated</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>Restaurant Partners</p>
+                    </div>
+                    <div class="stat">
+                        <h3>20+</h3>
+                        <p>Cities Served</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>123 Sharing Street, Foodville, FD 12345</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>(123) 456-7890</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>info@foodshare.org</p>
+                </div>
+                <div class="social-media">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Enter subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Enter your message"></textarea>
+                    </div>
+                    <button type="submit" class="submit-contact">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>FoodShare</h2>
+                <p>Connecting donors, restaurants, and those in need</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#donate">Donate</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>For Donors</h3>
+                    <ul>
+                        <li><a href="#">Donation Options</a></li>
+                        <li><a href="#">Tax Benefits</a></li>
+                        <li><a href="#">Impact Reports</a></li>
+                        <li><a href="#">Donor Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>For Restaurants</h3>
+                    <ul>
+                        <li><a href="#">Partnership Benefits</a></li>
+                        <li><a href="#">How to Join</a></li>
+                        <li><a href="#">Partner Resources</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 FoodShare. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

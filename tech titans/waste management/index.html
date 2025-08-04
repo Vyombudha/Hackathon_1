@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WasteLess - Community Recycling & Reuse Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-recycle"></i> WasteLess</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#browse">Browse Items</a></li>
+                <li><a href="#post">Post Item</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Sign Up</button>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Turn Waste Into Opportunity</h1>
+            <p>Join your local community in sharing, reusing, and recycling materials</p>
+            <div class="hero-buttons">
+                <button class="browse-btn">Browse Items</button>
+                <button class="post-btn">Post an Item</button>
+            </div>
+            <div class="stats-container">
+                <div class="stat">
+                    <span class="stat-number">1,234</span>
+                    <span class="stat-label">Items Shared</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">567</span>
+                    <span class="stat-label">Active Members</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">890</span>
+                    <span class="stat-label">Kg Waste Saved</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>Post Your Items</h3>
+                <p>Take a photo and describe your leftover materials, from cardboard to electronics</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Connect Locally</h3>
+                <p>Find items near you or get notified when something you need becomes available</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Arrange Pickup</h3>
+                <p>Coordinate with other members to arrange pickup or delivery of items</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Earn Points</h3>
+                <p>Get rewarded for your contributions to the circular economy</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories">
+        <h2>Browse By Category</h2>
+        <div class="category-container">
+            <div class="category">
+                <div class="category-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>Electronics</h3>
+                <p>Gadgets, parts, cables</p>
+            </div>
+            <div class="category">
+                <div class="category-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h3>Textiles</h3>
+                <p>Clothing, fabrics, materials</p>
+            </div>
+            <div class="category">
+                <div class="category-icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <h3>Packaging</h3>
+                <p>Boxes, containers, padding</p>
+            </div>
+            <div class="category">
+                <div class="category-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Tools & Parts</h3>
+                <p>Hardware, tools, components</p>
+            </div>
+            <div class="category">
+                <div class="category-icon">
+                    <i class="fas fa-couch"></i>
+                </div>
+                <h3>Furniture</h3>
+                <p>Home items, decorations</p>
+            </div>
+            <div class="category">
+                <div class="category-icon">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <h3>Other</h3>
+                <p>Miscellaneous items</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="browse" class="browse-section">
+        <div class="browse-header">
+            <h2>Available Items Near You</h2>
+            <div class="browse-controls">
+                <div class="search-container">
+                    <input type="text" placeholder="Search items..." id="search-input">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="view-toggle">
+                    <button class="toggle-btn active" id="grid-view-btn"><i class="fas fa-th"></i></button>
+                    <button class="toggle-btn" id="map-view-btn"><i class="fas fa-map-marked-alt"></i></button>
+                </div>
+                <div class="filter-dropdown">
+                    <button class="filter-btn">Filter <i class="fas fa-filter"></i></button>
+                    <div class="filter-content">
+                        <label><input type="checkbox" checked> Electronics</label>
+                        <label><input type="checkbox" checked> Textiles</label>
+                        <label><input type="checkbox" checked> Packaging</label>
+                        <label><input type="checkbox" checked> Tools & Parts</label>
+                        <label><input type="checkbox" checked> Furniture</label>
+                        <label><input type="checkbox" checked> Other</label>
+                        <div class="distance-filter">
+                            <span>Distance: <span id="distance-value">10</span> km</span>
+                            <input type="range" min="1" max="50" value="10" id="distance-slider">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="view-container">
+            <div class="grid-view active" id="grid-view">
+                <div class="items-grid">
+                    <!-- Item cards will be dynamically generated here -->
+                    <div class="item-card">
+                        <div class="item-image" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                        <div class="item-details">
+                            <div class="item-category">Electronics</div>
+                            <h3>Broken Laptop for Parts</h3>
+                            <p>Screen cracked but motherboard and other components still working.</p>
+                            <div class="item-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 2.3 km away</span>
+                                <span><i class="fas fa-calendar-alt"></i> Posted 2 days ago</span>
+                            </div>
+                            <div class="user-info">
+                                <img src="https://via.placeholder.com/30x30" alt="User" class="user-avatar">
+                                <span>Michael S. <i class="fas fa-star"></i> 4.8</span>
+                            </div>
+                            <button class="request-btn">Request Item</button>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="item-image" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                        <div class="item-details">
+                            <div class="item-category">Packaging</div>
+                            <h3>Moving Boxes (5)</h3>
+                            <p>Used once for moving. Still in good condition. Various sizes available.</p>
+                            <div class="item-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 1.5 km away</span>
+                                <span><i class="fas fa-calendar-alt"></i> Posted 1 day ago</span>
+                            </div>
+                            <div class="user-info">
+                                <img src="https://via.placeholder.com/30x30" alt="User" class="user-avatar">
+                                <span>Sarah L. <i class="fas fa-star"></i> 4.9</span>
+                            </div>
+                            <button class="request-btn">Request Item</button>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="item-image" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                        <div class="item-details">
+                            <div class="item-category">Textiles</div>
+                            <h3>Fabric Scraps for Crafting</h3>
+                            <p>Leftover fabric pieces from sewing projects. Good for small crafts.</p>
+                            <div class="item-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 3.7 km away</span>
+                                <span><i class="fas fa-calendar-alt"></i> Posted 3 days ago</span>
+                            </div>
+                            <div class="user-info">
+                                <img src="https://via.placeholder.com/30x30" alt="User" class="user-avatar">
+                                <span>Emma T. <i class="fas fa-star"></i> 4.7</span>
+                            </div>
+                            <button class="request-btn">Request Item</button>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="item-image" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                        <div class="item-details">
+                            <div class="item-category">Electronics</div>
+                            <h3>Old Smartphone (Working)</h3>
+                            <p>iPhone 8 with cracked back glass but fully functional. Great for parts or repair.</p>
+                            <div class="item-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 4.1 km away</span>
+                                <span><i class="fas fa-calendar-alt"></i> Posted 5 days ago</span>
+                            </div>
+                            <div class="user-info">
+                                <img src="https://via.placeholder.com/30x30" alt="User" class="user-avatar">
+                                <span>David K. <i class="fas fa-star"></i> 4.5</span>
+                            </div>
+                            <button class="request-btn">Request Item</button>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="item-image" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                        <div class="item-details">
+                            <div class="item-category">Tools & Parts</div>
+                            <h3>Assorted Computer Cables</h3>
+                            <p>Various USB, HDMI, and power cables. All tested and working.</p>
+                            <div class="item-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 0.8 km away</span>
+                                <span><i class="fas fa-calendar-alt"></i> Posted today</span>
+                            </div>
+                            <div class="user-info">
+                                <img src="https://via.placeholder.com/30x30" alt="User" class="user-avatar">
+                                <span>Alex P. <i class="fas fa-star"></i> 5.0</span>
+                            </div>
+                            <button class="request-btn">Request Item</button>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <div class="item-image" style="background-image: url('https://via.placeholder.com/300x200');"></div>
+                        <div class="item-details">
+                            <div class="item-category">Furniture</div>
+                            <h3>Wooden Chair (Needs Repair)</h3>
+                            <p>Solid wood chair with broken leg. Good for upcycling project.</p>
+                            <div class="item-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 5.2 km away</span>
+                                <span><i class="fas fa-calendar-alt"></i> Posted 4 days ago</span>
+                            </div>
+                            <div class="user-info">
+                                <img src="https://via.placeholder.com/30x30" alt="User" class="user-avatar">
+                                <span>Jessica M. <i class="fas fa-star"></i> 4.6</span>
+                            </div>
+                            <button class="request-btn">Request Item</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="load-more-btn">Load More</button>
+            </div>
+            <div class="map-view" id="map-view">
+                <div id="map"></div>
+                <div class="map-sidebar">
+                    <h3>Items Near You</h3>
+                    <div class="map-item-list">
+                        <!-- Map item list will be dynamically generated here -->
+                        <div class="map-item">
+                            <img src="https://via.placeholder.com/50x50" alt="Item">
+                            <div class="map-item-info">
+                                <h4>Broken Laptop for Parts</h4>
+                                <span>2.3 km away</span>
+                            </div>
+                        </div>
+                        <div class="map-item">
+                            <img src="https://via.placeholder.com/50x50" alt="Item">
+                            <div class="map-item-info">
+                                <h4>Moving Boxes (5)</h4>
+                                <span>1.5 km away</span>
+                            </div>
+                        </div>
+                        <div class="map-item">
+                            <img src="https://via.placeholder.com/50x50" alt="Item">
+                            <div class="map-item-info">
+                                <h4>Fabric Scraps for Crafting</h4>
+                                <span>3.7 km away</span>
+                            </div>
+                        </div>
+                        <div class="map-item">
+                            <img src="https://via.placeholder.com/50x50" alt="Item">
+                            <div class="map-item-info">
+                                <h4>Old Smartphone (Working)</h4>
+                                <span>4.1 km away</span>
+                            </div>
+                        </div>
+                        <div class="map-item">
+                            <img src="https://via.placeholder.com/50x50" alt="Item">
+                            <div class="map-item-info">
+                                <h4>Assorted Computer Cables</h4>
+                                <span>0.8 km away</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="post" class="post-section">
+        <h2>Post Your Item</h2>
+        <div class="post-container">
+            <form id="post-form">
+                <div class="form-group">
+                    <label for="item-title">Item Title</label>
+                    <input type="text" id="item-title" placeholder="E.g., Broken Laptop for Parts" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-category">Category</label>
+                    <select id="item-category" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="textiles">Textiles</option>
+                        <option value="packaging">Packaging</option>
+                        <option value="tools">Tools & Parts</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="item-description">Description</label>
+                    <textarea id="item-description" placeholder="Describe your item, its condition, and potential uses" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="item-photos">Photos</label>
+                    <div class="photo-upload-container">
+                        <div class="photo-upload">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Photo</span>
+                            <input type="file" id="item-photos" accept="image/*" multiple>
+                        </div>
+                        <div class="photo-preview-container">
+                            <!-- Photo previews will be added here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="item-location">Your Location</label>
+                    <input type="text" id="item-location" placeholder="Enter your address or use current location" required>
+                    <button type="button" class="use-location-btn"><i class="fas fa-map-marker-alt"></i> Use My Location</button>
+                </div>
+                <div class="form-group">
+                    <label for="pickup-options">Pickup Options</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="pickup-options" value="pickup" checked> Pickup from my location</label>
+                        <label><input type="checkbox" name="pickup-options" value="delivery"> I can deliver within 5km</label>
+                        <label><input type="checkbox" name="pickup-options" value="shipping"> I can ship (recipient pays)</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="availability">Availability</label>
+                    <select id="availability" required>
+                        <option value="anytime">Available anytime</option>
+                        <option value="weekdays">Weekdays only</option>
+                        <option value="weekends">Weekends only</option>
+                        <option value="evenings">Evenings only</option>
+                        <option value="custom">Custom schedule</option>
+                    </select>
+                </div>
+                <button type="submit" class="post-submit-btn">Post Item</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>About WasteLess</h2>
+                <p>WasteLess is a community-driven platform that connects people who have leftover materials with those who can reuse them. Our mission is to reduce waste, promote a circular economy, and strengthen local communities.</p>
+                <p>By giving new life to items that would otherwise end up in landfills, we're helping to create a more sustainable future. From electronics to textiles, packaging to furniture, every item shared through our platform represents a step toward a zero-waste society.</p>
+                <h3>Our Impact</h3>
+                <div class="impact-stats">
+                    <div class="impact-stat">
+                        <span class="impact-number">5,000+</span>
+                        <span class="impact-label">Items Shared</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-number">2,500+</span>
+                        <span class="impact-label">Active Members</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-number">10,000+</span>
+                        <span class="impact-label">Kg Waste Diverted</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://via.placeholder.com/500x400" alt="Community sharing">
+            </div>
+        </div>
+        <div class="testimonials">
+            <h3>What Our Community Says</h3>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"I found the perfect parts to fix my old computer through WasteLess. Not only did I save money, but I also kept electronics out of the landfill."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/50x50" alt="User" class="author-avatar">
+                        <div class="author-info">
+                            <span class="author-name">Robert J.</span>
+                            <span class="author-role">Community Member</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"As a craft teacher, I've found so many materials for my classes through WasteLess. It's amazing what people are willing to share!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/50x50" alt="User" class="author-avatar">
+                        <div class="author-info">
+                            <span class="author-name">Maria T.</span>
+                            <span class="author-role">Art Teacher</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"I've met so many like-minded people in my neighborhood through WasteLess. It's more than just sharing items - it's building community."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/50x50" alt="User" class="author-avatar">
+                        <div class="author-info">
+                            <span class="author-name">James L.</span>
+                            <span class="author-role">Neighborhood Organizer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="join-community">
+        <div class="join-container">
+            <h2>Join Our Community Today</h2>
+            <p>Start sharing, reducing waste, and connecting with your neighbors</p>
+            <button class="join-btn">Sign Up Now</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2><i class="fas fa-recycle"></i> WasteLess</h2>
+                <p>Community Recycling & Reuse Hub</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#browse">Browse Items</a></li>
+                        <li><a href="#post">Post Item</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Report an Issue</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for tips on sustainable living and community updates</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 WasteLess. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for item details -->
+    <div class="modal" id="item-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for login/signup -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="signup">Sign Up</button>
+                </div>
+                <div class="auth-forms">
+                    <form id="login-form" class="auth-form active">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <div class="form-group remember-me">
+                            <label><input type="checkbox"> Remember me</label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="auth-submit-btn">Login</button>
+                        <div class="social-auth">
+                            <p>Or login with</p>
+                            <div class="social-auth-buttons">
+                                <button type="button" class="google-auth"><i class="fab fa-google"></i> Google</button>
+                                <button type="button" class="facebook-auth"><i class="fab fa-facebook-f"></i> Facebook</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="signup-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <input type="password" id="signup-confirm-password" required>
+                        </div>
+                        <div class="form-group terms">
+                            <label><input type="checkbox" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                        </div>
+                        <button type="submit" class="auth-submit-btn">Sign Up</button>
+                        <div class="social-auth">
+                            <p>Or sign up with</p>
+                            <div class="social-auth-buttons">
+                                <button type="button" class="google-auth"><i class="fab fa-google"></i> Google</button>
+                                <button type="button" class="facebook-auth"><i class="fab fa-facebook-f"></i> Facebook</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
